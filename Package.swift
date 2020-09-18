@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.1
 
 import PackageDescription
 
@@ -23,36 +23,64 @@ let package = Package(
         .package(url: "https://github.com/tuist/xcodeproj", .exact("4.3.1")),
     ],
     targets: [
-        .target(name: "Sourcery", dependencies: [
-            "SourceryFramework",
-            "SourceryRuntime",
-            "SourceryJS",
-            "SourcerySwift",
-            "Commander",
-            "PathKit",
-            "SourceKittenFramework",
-            "StencilSwiftKit",
-            "xcproj",
-            "TryCatch",
-        ]),
-        .target(name: "SourceryRuntime"),
-        .target(name: "SourceryUtils", dependencies: [
-          "PathKit"
-        ]),
-        .target(name: "SourceryFramework", dependencies: [
-          "PathKit",
-          "SourceKittenFramework",
-          "SourceryUtils",
-          "SourceryRuntime"
-        ]),
-        .target(name: "SourceryJS", dependencies: [
-          "PathKit"
-        ]),
-        .target(name: "SourcerySwift", dependencies: [
-          "PathKit",
-          "SourceryRuntime",
-          "SourceryUtils"
-        ]),
-        .target(name: "TryCatch", path: "TryCatch"),
+        .target(
+            name: "Sourcery",
+            dependencies: [
+                .target(name: "SourceryFramework"),
+                .target(name: "SourceryRuntime"),
+                .target(name: "SourceryJS"),
+                .target(name: "SourcerySwift"),
+                .target(name: "TryCatch"),
+                .product(name: "Commander", package: "Commander"),
+                .product(name: "PathKit", package: "PathKit"),
+                .product(name: "SourceKittenFramework", package: "SourceKitten"),
+                .product(name: "StencilSwiftKit", package: "StencilSwiftKit"),
+                .product(name: "xcproj", package: "xcproj"),
+            ],
+            path: "Sourcery"
+        ),
+        .target(
+            name: "SourceryRuntime",
+            dependencies: [
+                .product(name: "SourceKittenFramework", package: "SourceKitten"),
+            ],
+            path: "SourceryRuntime"
+        ),
+        .target(
+            name: "SourceryUtils",
+            dependencies: [
+                .product(name: "PathKit", package: "PathKit"),
+            ],
+            path: "SourceryUtils"
+        ),
+        .target(
+            name: "SourceryFramework",
+            dependencies: [
+                .target(name: "SourceryRuntime"),
+                .target(name: "SourceryUtils"),
+                .product(name: "PathKit", package: "PathKit"),
+                .product(name: "SourceKittenFramework", package: "SourceKitten"),
+            ],
+            path: "SourceryFramework"
+        ),
+        .target(
+            name: "SourceryJS",
+            dependencies: [
+                .product(name: "PathKit", package: "PathKit"),
+            ],
+            path: "SourceryJS"
+        ),
+        .target(
+            name: "SourcerySwift",
+            dependencies: [
+                .target(name: "SourceryRuntime"),
+                .target(name: "SourceryUtils"),
+                .product(name: "PathKit", package: "PathKit"),
+            ],
+            path: "SourcerySwift"),
+        .target(
+            name: "TryCatch",
+            path: "TryCatch"
+        ),
     ]
 )
