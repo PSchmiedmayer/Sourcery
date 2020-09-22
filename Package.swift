@@ -15,7 +15,7 @@ let package = Package(
         .library(name: "SourceryFramework", targets: ["SourceryFramework"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/kylef/Commander.git", .exact("0.7.1")),
+        .package(url: "https://github.com/kylef/Commander.git", .exact("0.9.1")),
         .package(url: "https://github.com/kylef/PathKit.git", .exact("0.9.2")),
         .package(url: "https://github.com/jpsim/SourceKitten.git", .exact("0.30.0")),
         .package(url: "https://github.com/SwiftGen/StencilSwiftKit.git", .exact("2.7.2")),

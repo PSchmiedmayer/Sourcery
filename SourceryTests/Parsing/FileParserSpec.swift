@@ -218,7 +218,7 @@ class FileParserSpec: QuickSpec {
                     }
 
                     context("given local typealias") {
-                        it ("extracts local typealiases properly") {
+                        it("extracts local typealiases properly") {
                             let foo = Type(name: "Foo")
                             let bar = Type(name: "Bar", parent: foo)
                             let fooBar = Type(name: "FooBar", parent: bar)
@@ -266,7 +266,7 @@ class FileParserSpec: QuickSpec {
                     }
 
                     context("given local protocol composition") {
-                        it ("extracts local protocol compositions properly") {
+                        it("extracts local protocol compositions properly") {
                             let foo = Type(name: "Foo")
                             let bar = Type(name: "Bar", parent: foo)
 
